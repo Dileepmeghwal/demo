@@ -5,22 +5,25 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Appearance,
   Modal,
+  useColorScheme,
+  Switch,
 } from "react-native";
 import Calendar from "react-native-calendars/src/calendar";
+import DropDown from "./app/DropDown";
+import Header from "./app/Header";
+import StatusBar from "./app/Header";
 import SwitchButton from "./app/SwitchButton";
+import HomePagae from "./app/HomePagae";
+import Colors from "./app/Colors";
+import HomeScreen from "./Screen/HomeScreen";
+import { ThemeProvider } from "./ThemeProvider";
 
 const App = () => {
+  const isDarkMode = useColorScheme() === "dark";
+  const [isDark, setIsDark] = useState(isDarkMode);
   const [showModal, setshowModal] = useState(false);
-  const [events, setEvents] = useState([
-    {
-      start: '2023-03-16 00:00:00',
-      end: '2023-03-17 02:00:00',
-      title: 'New Year Party',
-      summary: 'xyz Location',
-    },
-    
-  ]);
 
   const vacation = { key: "vacation", color: "red", selectedDotColor: "blue" };
   const massage = { key: "massage", color: "blue", selectedDotColor: "blue" };
@@ -46,7 +49,7 @@ const App = () => {
     //       onDayPress={(date) => {
     //         alert(date);
     //         setshowModal(false);
-            
+
     //       }}
     //       initialDate={"2023-03-15"}
     //       hideExtraDays={true}
@@ -72,19 +75,25 @@ const App = () => {
     //   </Modal>
     // </View>
 
-    <SwitchButton />
+    // <SwitchButton />
+    // <Header />xzxzzzz
+    // <DropDown/>
+
+    <ThemeProvider>
+      <HomeScreen />
+    </ThemeProvider>
   );
 };
 
 const styles = (StyleSheet = {
   container: {
     flex: 1,
-    backgroundColor: "grey",
     marginTop: 40,
     justifyContent: "center",
+    alignItems: "center",
   },
   text: {
-    color: "#000",
+    color: "#000000",
     fontSize: 30,
     textAlign: "center",
   },
